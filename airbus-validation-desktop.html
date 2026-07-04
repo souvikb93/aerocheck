@@ -829,7 +829,7 @@ document.addEventListener('click',e=>{
   document.querySelectorAll('.card-dropdown.open').forEach(d=>d.classList.remove('open'));
   if(!e.target.closest('.cs-wrap')&&!e.target.closest('.cs-dropdown'))closeAllCustomSelects();
 });
-document.addEventListener('click',(e)=>{if(e.target.closest('#tbl-post')||e.target.closest('.review-pill'))return;document.querySelectorAll('tr.linked-active').forEach(r=>r.classList.remove('linked-active'))});
+document.addEventListener('click',(e)=>{if(e.target.closest('#tbl-post')||e.target.closest('.review-pill')||e.target.closest('.hotspot'))return;document.querySelectorAll('tr.linked-active').forEach(r=>r.classList.remove('linked-active'))});
 document.addEventListener('change',e=>{if(e.target.matches('select.form-input'))e.target.classList.toggle('has-value',!!e.target.value)});
 
 let diagScale=1,diagPanX=0,diagPanY=0;
