@@ -118,6 +118,26 @@
   .btn-sm{background:var(--white);border:1px solid var(--border-dark);color:var(--text-mid);height:24px;padding:0 10px;border-radius:4px;font-size:10px;font-family:'Inter',sans-serif;cursor:pointer;font-weight:500;margin-left:auto;flex-shrink:0;display:inline-flex;align-items:center}
   .btn-tertiary{color:var(--navy);font-weight:600;cursor:pointer;background:none;border:none;padding:0;font-family:'Inter',sans-serif;text-decoration:none}
   .btn-tertiary:hover{text-decoration:underline}
+  .btn-tertiary.link-accent{color:var(--accent)}
+  .btn-tertiary.link-accent:hover{color:#1d4ed8}
+  .modal-intro{font-size:12px;font-weight:400;color:var(--text-mid);line-height:1.5;margin:0 0 18px}
+  .override-col-heading{font-size:13px;font-weight:600;color:var(--text);letter-spacing:0;margin-bottom:16px}
+  .modal-grid{display:grid;grid-template-columns:0.85fr 1fr 1.15fr}
+  .modal-col{padding:0 18px}
+  .modal-col:first-child{padding-left:0}
+  .modal-col:last-child{padding-right:0}
+  .modal-col+.modal-col{border-left:1px solid var(--border)}
+  .ai-check-list{display:flex;flex-direction:column;gap:11px}
+  .ai-check-row{position:relative;display:flex;gap:8px;align-items:flex-start}
+  .ai-check-icon-col{width:15px;flex-shrink:0;display:flex;justify-content:center}
+  .ai-check-row:not(:last-child)::after{content:'';position:absolute;left:7px;top:15px;bottom:-11px;width:1px;background:var(--border-dark)}
+  .ai-check-circle,.ai-warn-circle{width:15px;height:15px;border-radius:50%;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .ai-check-circle{background:var(--success)}
+  .ai-warn-circle{background:var(--error);font-weight:700}
+  .ai-check-title{font-size:10px;font-weight:600;color:var(--text)}
+  .ai-check-sub{font-size:10px;color:var(--text-muted)}
+  .value-tag{display:inline-block;font-size:9px;font-weight:500;padding:2px 8px;border-radius:20px;margin-top:6px}
+  .value-tag.ai{background:#eff6ff;border:1px solid #bfdbfe;color:var(--accent)}
   .add-more{font-size:10px;margin-top:6px;display:inline-flex;align-items:center;gap:3px}
   .modal-footer{padding:10px 16px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:6px;flex-shrink:0}
   .btn-cancel{background:var(--white);border:1px solid var(--border-dark);color:var(--text-mid);height:32px;padding:0 20px;border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;font-size:11px;font-weight:500;display:inline-flex;align-items:center}
@@ -198,6 +218,7 @@
   .hotspot:hover{transform:scale(1.35);z-index:20}
   .hotspot.err{background:var(--error);color:#fff;border:2px solid #fff;animation:errPulse 2s infinite}
   .hotspot.ai{background:#2563eb;color:#fff;border:2px solid #fff;box-shadow:0 2px 8px rgba(37,99,235,.4)}
+  .hotspot.done{background:var(--success);color:#fff;border:2px solid #fff;box-shadow:0 2px 8px rgba(34,197,94,.35)}
   @keyframes errPulse{0%,100%{box-shadow:0 0 0 0 rgba(229,62,62,.5)}60%{box-shadow:0 0 0 7px rgba(229,62,62,0)}}
   .hotspot-tooltip{position:absolute;bottom:calc(100% + 5px);left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;border-radius:4px;padding:3px 7px;font-size:9px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .15s;z-index:30;font-weight:400}
   .hotspot:hover .hotspot-tooltip{opacity:1}
@@ -229,13 +250,13 @@
   ::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#d0d5dc;border-radius:2px}
 
   .field-modal-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
-  .field-modal-id{font-size:10px;font-weight:600;color:var(--text);line-height:1.5}
-  .current-value{font-size:13px;font-weight:700;color:var(--text)}
-  .current-value.missing{color:var(--error)}
+  .field-modal-id{font-size:10px;font-weight:400;color:var(--text-mid);line-height:1.5}
+  .current-value{font-size:10px;font-weight:400;color:var(--text-mid)}
+  .current-value.missing{color:var(--error);font-weight:600}
   .source-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:8px 10px}
   .source-box .src-name{font-size:10px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:2px}
   .source-box .src-snippet{font-size:9px;font-weight:500;color:var(--text-mid);line-height:1.5;font-style:italic}
-  .reasoning-box{font-size:10px;font-weight:600;color:var(--text);line-height:1.5}
+  .reasoning-box{font-size:10px;font-weight:400;color:var(--text-mid);line-height:1.5}
   .status-note{border-radius:6px;padding:8px 10px;font-size:10px;line-height:1.5;margin-top:4px}
   .toast{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:11px;font-weight:600;padding:8px 16px;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,.2);z-index:400;opacity:0;pointer-events:none;transition:opacity .2s}
   .toast.show{opacity:1}
@@ -247,24 +268,26 @@
   .field-error{display:none;color:var(--error);font-size:9px;font-weight:600;margin-top:4px}
   .field-error.show{display:block}
   textarea.form-input{height:52px;padding:7px 10px;resize:none}
-  .file-select-list{display:flex;flex-direction:column;gap:6px;margin-top:2px}
-  .file-select-item{display:flex;align-items:center;gap:8px;border:1px solid var(--border-dark);border-radius:5px;padding:8px 10px;cursor:pointer}
-  .file-select-item.selected{border-color:var(--accent);background:#f0f4ff}
-  .file-select-item input[type=radio]{width:13px;height:13px;flex-shrink:0;margin:0;accent-color:var(--accent);cursor:pointer}
-  .file-select-text{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1}
-  .file-select-name{font-size:10px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .file-select-type{font-size:9px;color:var(--text-muted)}
-  label.add-file-row{display:inline-flex;align-items:center;gap:6px;border-radius:5px;padding:6px 8px;margin-top:4px;position:relative;text-transform:none;letter-spacing:0;margin-bottom:0;font-size:10px;color:var(--accent)}
+  .cs-wrap{position:relative;width:100%}
+  .cs-trigger{width:100%;border:1px solid var(--border-dark);border-radius:5px;height:30px;padding:0 10px;font-family:'Inter',sans-serif;font-size:11px;color:var(--text-muted);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;transition:border-color .15s;gap:6px}
+  .cs-trigger.has-value{color:var(--text)}
+  .cs-wrap.open .cs-trigger{border-color:var(--accent)}
+  .cs-chevron{flex-shrink:0;transition:transform .2s;color:var(--text-muted)}
+  .cs-wrap.open .cs-chevron{transform:rotate(180deg)}
+  .cs-dropdown{display:none;position:fixed;background:var(--white);border:1px solid var(--border);border-radius:7px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:9999;overflow:hidden;animation:fadeIn .15s ease}
+  .cs-wrap.open .cs-dropdown{display:block}
+  .cs-option{padding:8px 12px;font-size:11px;font-family:'Inter',sans-serif;color:var(--text-mid);cursor:pointer;display:block;width:100%;text-align:left;border:none;background:none;transition:background .1s}
+  .cs-option:hover{background:#f5f7fa;color:var(--text)}
+  .cs-option.selected{color:var(--accent);font-weight:500}
+  label.add-file-row{display:inline-flex;align-items:center;gap:6px;border-radius:5px;padding:6px 8px;margin-top:4px;position:relative;text-transform:none;letter-spacing:0;margin-bottom:0;font-size:10px}
   .add-file-row svg{flex-shrink:0}
   .add-file-row input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
   .btn-confirm{background:var(--navy);color:#fff;border:none;height:32px;padding:0 18px;border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;display:inline-flex;align-items:center;gap:5px}
   .btn-override{background:var(--white);color:var(--text-mid);border:1px solid var(--border-dark);height:32px;padding:0 18px;border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;font-size:11px;font-weight:500}
-  .override-panel{display:none;border-top:1px dashed var(--border-dark);margin-top:12px;padding-top:12px}
-  .override-panel.open{display:block}
 
-  button:focus-visible,.tab:focus-visible,.icon-btn:focus-visible,.diagram-btn:focus-visible,.missing-badge:focus-visible,.ai-badge:focus-visible,.toggle-label:focus-visible,.file-select-item:focus-within,.hotspot:focus-visible,.part-card:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  .file-select-item:focus-within{outline-offset:1px}
-  .form-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+  button:focus-visible,.tab:focus-visible,.icon-btn:focus-visible,.diagram-btn:focus-visible,.missing-badge:focus-visible,.ai-badge:focus-visible,.toggle-label:focus-visible,.hotspot:focus-visible,.part-card:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
+  .form-input:focus{border-color:var(--accent);box-shadow:none;outline:none}
 
   @media(max-width:600px){.grid{grid-template-columns:1fr 1fr}.upload-cols{grid-template-columns:1fr}.detail-layout{flex-direction:column}.detail-sidebar{width:100%;border-right:none;border-bottom:1px solid var(--border)}.chrome-actions{display:none}}
   @media(max-width:420px){.grid{grid-template-columns:1fr}.stats{flex-direction:column}.chrome-nav{display:none}.nav-links{gap:8px}}
@@ -361,11 +384,14 @@
 
 <div class="processing-overlay" id="processing-overlay"><div class="processing-box"><div class="ai-spinner"></div><h3>AI Validation in Progress</h3><p>Analyzing diagrams and cross-referencing ERP data...</p><div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div><div class="processing-steps"><div class="step-item active" id="step-1"><div class="step-icon">→</div> Parsing 2D diagram</div><div class="step-item" id="step-2"><div class="step-icon"></div> Extracting BOM entries</div><div class="step-item" id="step-3"><div class="step-icon"></div> Cross-referencing ERP</div><div class="step-item" id="step-4"><div class="step-icon"></div> Detecting mismatches</div><div class="step-item" id="step-5"><div class="step-icon"></div> Generating report</div></div></div></div>
 
-<div class="modal-overlay" id="escalation-modal" onclick="if(event.target===this)closeEscalationModal()"><div class="modal" style="max-width:440px"><div class="modal-header"><h2>Missing Information</h2><button class="modal-close" onclick="closeEscalationModal()">×</button></div><div class="modal-body" id="esc-modal-body"></div><div class="modal-footer" id="esc-modal-footer"></div></div></div>
+<div class="modal-overlay" id="escalation-modal" onclick="if(event.target===this)closeEscalationModal()"><div class="modal" style="max-width:760px"><div class="modal-header"><h2>Provide Missing Values</h2><button class="modal-close" onclick="closeEscalationModal()">×</button></div><div class="modal-body" id="esc-modal-body"></div><div class="modal-footer" id="esc-modal-footer"></div></div></div>
 
-  <div class="modal-overlay" id="ai-modal" onclick="if(event.target===this)closeAiModal()"><div class="modal" style="max-width:440px"><div class="modal-header"><h2>Review AI Suggestion</h2><button class="modal-close" onclick="closeAiModal()">×</button></div><div class="modal-body" id="ai-modal-body"></div><div class="modal-footer" id="ai-modal-footer"></div></div></div>
+  <div class="modal-overlay" id="ai-modal" onclick="if(event.target===this)closeAiModal()"><div class="modal" id="ai-modal-inner" style="max-width:760px"><div class="modal-header"><h2 id="ai-modal-title">Review Suggested Values</h2><button class="modal-close" onclick="closeAiModal()">×</button></div><div class="modal-body" id="ai-modal-body"></div><div class="modal-footer" id="ai-modal-footer"></div></div></div>
 
-  <div class="modal-overlay" id="submit-confirm-modal" onclick="if(event.target===this)closeSubmitConfirm()"><div class="modal" style="max-width:400px"><div class="modal-header"><h2>Submit Validation Report?</h2><button class="modal-close" onclick="closeSubmitConfirm()">×</button></div><div class="modal-body" style="padding:16px"><p style="font-size:11px;color:var(--text-mid);line-height:1.6">You have reviewed all AI-generated suggestions and completed all missing information. Are you sure you want to submit this validation report?</p></div><div class="modal-footer"><button class="btn-cancel" onclick="closeSubmitConfirm()">Cancel</button><button class="btn-submit" onclick="confirmSubmit()">Submit</button></div></div></div>
+  <div class="modal-overlay" id="review-update-modal" onclick="if(event.target===this)closeReviewUpdateModal()"><div class="modal" style="max-width:620px"><div class="modal-header"><h2>Update Current Value</h2><button class="modal-close" onclick="closeReviewUpdateModal()">×</button></div><div class="modal-body" id="review-modal-body"></div><div class="modal-footer" id="review-modal-footer"></div></div></div>
+
+  <div class="modal-overlay" id="pending-review-modal" onclick="if(event.target===this)closePendingModal()"><div class="modal" style="max-width:420px"><div class="modal-header"><h2>Complete Required Reviews</h2><button class="modal-close" onclick="closePendingModal()">×</button></div><div class="modal-body" id="pending-review-body" style="padding:16px"></div><div class="modal-footer"><button class="btn-confirm" onclick="reviewFirstPending()">Review Items</button></div></div></div>
+  <div class="modal-overlay" id="submit-confirm-modal" onclick="if(event.target===this)closeSubmitConfirm()"><div class="modal" style="max-width:400px"><div class="modal-header"><h2>Confirm Submission</h2><button class="modal-close" onclick="closeSubmitConfirm()">×</button></div><div class="modal-body" style="padding:16px"><p class="modal-intro" style="margin:0">You have reviewed all AI-generated suggestions and completed all missing information. Are you sure you want to submit this validation report?</p></div><div class="modal-footer"><button class="btn-cancel" onclick="closeSubmitConfirm()">Cancel</button><button class="btn-submit" onclick="confirmSubmit()">Submit</button></div></div></div>
   </div>
 </div>
 
@@ -379,19 +405,21 @@ function makeBomData(){return [
   {pn:'WB-200-A1',rev:'B',dwg:'WB-0001',zone:'A1',desc:'Attachment Washer',dim:'Ø10×100×100',notes:'Titanium Grade 5',supplier:'Spirit AeroSystems',weight:'0.100',sf:'08-AB1',et:'A',tc:'TC-881234',fieldMeta:{}},
   {pn:'WB-200-B1',rev:'B',dwg:'WB-0001',zone:'B1',desc:'Fuselage Mount Washer',dim:'Ø8×100×100',notes:'Aluminium 7075',supplier:'',weight:'0.085',sf:'08-AB1',et:'A',tc:'TC-881235',
     fieldMeta:{supplier:{state:'missing',
-      attemptSummary:'Checked ERP master, prior BOM revisions, and the drawing title block — no supplier reference found in any.',
+      workflow:[{title:'Detected missing value',sub:'Supplier field empty'},{title:'Checked ERP master',sub:'No match found'},{title:'Searched prior BOM revisions',sub:'None recorded'},{title:'Checked drawing title block',sub:'No vendor code'}],
       reason:'No supplier reference exists in any linked source (diagram, ERP, or revision history). Needs an engineer to enter the correct vendor before production sign-off.',
       resolution:null}}},
   {pn:'WB-200-27',rev:'C',dwg:'WB-0003',zone:'B9',desc:'H7 Bore Alignment Pin',dim:'Ø10 H7',notes:'Steel 17-4PH',supplier:'PCC Airfoils',weight:'0.050',sf:'05-ST3',et:'A',tc:'TC-881250',fieldMeta:{}},
   {pn:'WB-200-R19',rev:'A',dwg:'WB-0002',zone:'C1',desc:'Top Radius Fillet',dim:'R19×350×80',notes:'Composite T300',supplier:'Hexcel Corp',weight:'0.200',sf:'03-CF2',et:'C',tc:'TC-881240',
     fieldMeta:{notes:{state:'ai-generated',
       source:'Adjacent part family material certs',
+      workflow:[{title:'Detected missing value',sub:'Materials field empty'},{title:'Searched linked sources',sub:'Drawing, ERP, part-family certs'},{title:'Found match',sub:'Adjacent part family material certs'},{title:'Validated against drawing',sub:'Rev. A, family 03-CF2'}],
       sourceSnippet:'"...material certs for part family 03-CF2 confirm layup grade T300 across the rev. A drawing set..."',
-      reasoning:'ERP only listed "Composite CFRP" — the layup grade was missing. AI matched the diagram callout against adjacent-family certs and filled in "T300"; this is an inferred match, not a direct citation, so it needs engineer sign-off.',
+      reasoning:'ERP only listed "Composite CFRP" — the layup grade was missing. AI matched the diagram callout against adjacent-family certs and filled in "T300".',
       resolution:null}}},
   {pn:'WB-200-C8',rev:'C',dwg:'WB-0001',zone:'C8',desc:'Control Bracket',dim:'Ø8×350×80',notes:'Steel 4130',supplier:'Ducommun Inc',weight:'0.150',sf:'02-AD1',et:'B',tc:'TC-881241',
     fieldMeta:{tc:{state:'ai-generated',
       source:'ERP Work Order WO-88123',
+      workflow:[{title:'Detected missing value',sub:'TC-NR field empty'},{title:'Searched linked sources',sub:'ERP work orders, drawing, BOM'},{title:'Found match',sub:'ERP Work Order WO-88123'},{title:'Validated against drawing',sub:'Rev. C, family 02-AD1'}],
       sourceSnippet:'"...Team Center reference TC-881241 issued for Control Bracket, part family 02-AD1, rev. C, matching supplier cert series 8812xx..."',
       reasoning:'No Team Center number appeared on the diagram or BOM row. AI matched this part\'s family and revision to a linked work order, then verified the certificate series lined up with adjacent parts before filling it in.',
       resolution:null}}},
@@ -415,7 +443,7 @@ let currentPartId=null;
 function fieldLabel(col){return{pn:'Part#',rev:'Rev',dwg:'DWG',zone:'Zone',desc:'Description',dim:'Dim',notes:'Materials',supplier:'Supplier',weight:'Weight',sf:'SF',et:'ET',tc:'TC-NR'}[col]||col}
 
 
-function renderBomTable(rows,tableId){const cols=['zone','pn','rev','dwg','desc','dim','notes','supplier','weight','sf','et','tc'];const labels=['Zone','Part#','Rev','DWG','Description','Dim','Materials','Supplier','Wt','SF','ET','TC-NR'];return`<table id="${tableId}"><thead><tr>${labels.map(l=>`<th>${l}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>{const fms=row.fieldMeta||{};const hasErr=Object.values(fms).some(f=>f.state==='missing'&&!f.resolution);return`<tr class="${hasErr?'has-error':''}" data-zone="${row.zone}" onclick="highlightZone('${row.zone}')">${cols.map(c=>{const fm=fms[c];let cell=row[c]||'—';if(fm&&fm.state==='missing'&&!fm.resolution){cell=`<span class="missing-badge" role="button" tabindex="0" onclick="event.stopPropagation();openFieldModal('${row.zone}','${c}')" onkeydown="if(event.key==='Enter'){event.stopPropagation();openFieldModal('${row.zone}','${c}')}">Missing</span>`}else if(fm&&fm.state==='ai-generated'){const cls=fm.resolution==='confirmed'?'confirmed':fm.resolution==='overridden'?'overridden':'pending';const checkIcon=fm.resolution?'<svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="margin-left:1px"><polyline points="20 6 9 17 4 12"/></svg>':'';cell=`<span class="ai-badge ${cls}" role="button" tabindex="0" onclick="event.stopPropagation();openFieldModal('${row.zone}','${c}')" onkeydown="if(event.key==='Enter'){event.stopPropagation();openFieldModal('${row.zone}','${c}')}"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3l1.9 4.9L19 9l-5.1 1.9L12 16l-1.9-5.1L5 9l5.1-1.9L12 3z"/></svg>${row[c]||'—'}${checkIcon}</span>`}return`<td>${cell}</td>`}).join('')}</tr>`}).join('')}</tbody></table>`}
+function renderBomTable(rows,tableId){const cols=['zone','pn','rev','dwg','desc','dim','notes','supplier','weight','sf','et','tc'];const labels=['Zone','Part#','Rev','DWG','Description','Dim','Materials','Supplier','Wt','SF','ET','TC-NR'];return`<table id="${tableId}"><thead><tr>${labels.map(l=>`<th>${l}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>{const fms=row.fieldMeta||{};const hasErr=Object.values(fms).some(f=>f.state==='missing'&&!f.resolution);return`<tr class="${hasErr?'has-error':''}" data-zone="${row.zone}" onclick="highlightZone('${row.zone}')">${cols.map(c=>{const fm=fms[c];let cell=row[c]||'—';if(fm&&fm.state==='missing'&&!fm.resolution){cell=`<span class="missing-badge" role="button" tabindex="0" onclick="event.stopPropagation();openFieldModal('${row.zone}','${c}')" onkeydown="if(event.key==='Enter'){event.stopPropagation();openFieldModal('${row.zone}','${c}')}">Missing</span>`}else if(fm&&fm.state==='missing'&&fm.resolution==='resolved'){cell=`<span class="ai-badge confirmed" role="button" tabindex="0" onclick="event.stopPropagation();openFieldModal('${row.zone}','${c}')" onkeydown="if(event.key==='Enter'){event.stopPropagation();openFieldModal('${row.zone}','${c}')}">${row[c]||'—'}<svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="margin-left:1px"><polyline points="20 6 9 17 4 12"/></svg></span>`}else if(fm&&fm.state==='ai-generated'){const cls=fm.resolution==='confirmed'?'confirmed':fm.resolution==='overridden'?'overridden':'pending';const checkIcon=fm.resolution?'<svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="margin-left:1px"><polyline points="20 6 9 17 4 12"/></svg>':'';cell=`<span class="ai-badge ${cls}" role="button" tabindex="0" onclick="event.stopPropagation();openFieldModal('${row.zone}','${c}')" onkeydown="if(event.key==='Enter'){event.stopPropagation();openFieldModal('${row.zone}','${c}')}"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3l1.9 4.9L19 9l-5.1 1.9L12 16l-1.9-5.1L5 9l5.1-1.9L12 3z"/></svg>${row[c]||'—'}${checkIcon}</span>`}return`<td>${cell}</td>`}).join('')}</tr>`}).join('')}</tbody></table>`}
 
 function renderPreBomTable(){const cols=['zone','pn','rev','dwg','desc','dim','notes','supplier','weight','sf','et','tc'];const labels=['Zone','Part#','Rev','DWG','Description','Dim','Materials','Supplier','Wt','SF','ET','TC-NR'];const rows=bomDataPre;return`<table><thead><tr>${labels.map(l=>`<th>${l}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>{const fms=row.fieldMeta||{};const hasErr=Object.keys(fms).length>0;return`<tr data-zone="${row.zone}" class="static-row${hasErr?' has-error':''}">${cols.map(c=>{const fm=fms[c];let cell=row[c]||'—';if(fm){cell='<span class="pre-missing">Missing</span>'}return`<td>${cell}</td>`}).join('')}</tr>`}).join('')}</tbody></table>`}
 
@@ -428,9 +456,10 @@ function renderDetailMain(){
 function hotspotClassFor(row){
   const fms=row.fieldMeta||{};
   const vals=Object.values(fms);
+  if(vals.length===0)return'ok';
   if(vals.some(f=>f.state==='missing'&&!f.resolution))return'err';
   if(vals.some(f=>f.state==='ai-generated'&&!f.resolution))return'ai';
-  return'ok';
+  return'done';
 }
 function hotspotLabelFor(row){
   const fms=row.fieldMeta||{};
@@ -449,11 +478,16 @@ function renderHotspots(){
     if(cls==='ok')return'';
     const fms=row.fieldMeta||{};
     const entry=Object.entries(fms).find(([,fm])=>!fm.resolution);
-    const clickable=entry?`onclick="openFieldModal('${row.zone}','${entry[0]}')" onkeydown="if(event.key==='Enter')openFieldModal('${row.zone}','${entry[0]}')"`:`onclick="highlightZone('${row.zone}')" onkeydown="if(event.key==='Enter')highlightZone('${row.zone}')"`;
+    const clickable=`onclick="scrollToZone('${row.zone}')" onkeydown="if(event.key==='Enter')scrollToZone('${row.zone}')"`;
     return `<div class="hotspot ${cls}" role="button" tabindex="0" style="left:${pos[0]}%;top:${pos[1]}%" ${clickable}><span>${row.zone}</span><div class="hotspot-tooltip">${hotspotLabelFor(row)}</div></div>`;
   }).join('');
 }
 
+function scrollToZone(zone){
+  highlightZone(zone);
+  const tr=document.querySelector(`#tbl-post tr[data-zone="${zone}"]`);
+  if(tr)tr.scrollIntoView({behavior:'smooth',block:'center'});
+}
 function highlightZone(zone){document.querySelectorAll('#tbl-post tr[data-zone]').forEach(r=>r.classList.remove('linked-active'));document.querySelectorAll(`#tbl-post tr[data-zone="${zone}"]`).forEach(r=>r.classList.add('linked-active'));document.querySelectorAll('.hotspot').forEach(h=>{h.style.transform='';if(h.textContent.includes(zone)){h.style.transform='scale(1.6)';setTimeout(()=>{h.style.transform=''},800)}})}
 
 function findRow(zone){return bomDataPre.find(r=>r.zone===zone)}
@@ -462,42 +496,95 @@ function openFieldModal(zone,col){
   highlightZone(zone);
   const row=findRow(zone);const fm=row.fieldMeta[col];
   if(!fm)return;
+  if(fm.resolution){openReviewUpdateModal(zone,col);return}
   if(fm.state==='missing')openEscalationModal(zone,col);
   else if(fm.state==='ai-generated')openAiSourceModal(zone,col);
 }
 
 function openEscalationModal(zone,col){
+  closeAllCustomSelects();
   const row=findRow(zone);const fm=row.fieldMeta[col];
   document.getElementById('esc-modal-body').innerHTML=`
-    <div class="form-group"><label>Current value</label><div class="current-value missing">Missing</div></div>
-    <div class="form-group"><label>Location</label><div class="field-modal-row">
-      <div><div class="field-modal-id">${fieldLabel(col)} · Zone ${zone}</div></div>
-    </div></div>
-    <div class="form-group"><label>AI Attempt</label><div class="source-box"><div class="reasoning-box" style="margin:0">${fm.attemptSummary}</div></div></div>
-    <div class="form-group"><label>AI Reasoning</label><div class="reasoning-box">${fm.reason}</div></div>
-    <div class="form-group"><label>Correct value</label><input class="form-input" id="esc-value-input" placeholder="Enter the correct ${fieldLabel(col).toLowerCase()}"/><div class="field-error" id="esc-value-error"></div></div>
-    <div class="form-group">
-      <label>Source of this correction</label>
-      <div id="src-select-panel" class="file-select-list">${renderSourceFileOptions()}</div>
-      <label class="add-file-row btn-tertiary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg><span>Upload new file</span><input type="file" id="src-new-file-input" onchange="addSourceFile(this)"/></label>
-      <div class="field-error" id="esc-source-error"></div>
+    <p class="modal-intro">AI couldn't resolve this field — here's what it checked before handing off for your input.</p>
+    <div class="modal-grid">
+      <div class="modal-col">
+        <div class="override-col-heading">Missing Field</div>
+        <div class="form-group"><label>Current value</label><div class="current-value missing">Missing</div></div>
+        <div class="form-group"><label>Location</label><div class="field-modal-id">${fieldLabel(col)} · Zone ${zone}</div></div>
+        <div class="form-group"><label>AI Reasoning</label><div class="reasoning-box">${fm.reason}</div></div>
+      </div>
+      <div class="modal-col">
+        <div class="override-col-heading">AI Workflow</div>
+        <div class="ai-check-list">
+          ${fm.workflow.map(w=>`<div class="ai-check-row"><div class="ai-check-icon-col"><span class="ai-check-circle">&#10003;</span></div><div><div class="ai-check-title">${w.title}</div><div class="ai-check-sub">${w.sub}</div></div></div>`).join('')}
+          <div class="ai-check-row"><div class="ai-check-icon-col"><span class="ai-warn-circle">!</span></div><div><div class="ai-check-title" style="color:var(--error)">Unresolved</div><div class="ai-check-sub">Requires engineer input</div></div></div>
+        </div>
+      </div>
+      <div class="modal-col">
+        <div class="override-col-heading">Resolution</div>
+        <div class="form-group"><label>Correct value</label><input class="form-input" id="esc-value-input" placeholder="Enter the correct ${fieldLabel(col).toLowerCase()}"/><div class="field-error" id="esc-value-error"></div></div>
+        <div class="form-group">
+          <label>Source document</label>
+          ${renderCustomSelect('esc-source-select')}
+          <label class="add-file-row btn-tertiary link-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg><span>Upload new file</span><input type="file" id="src-new-file-input" onchange="addSourceFile(this,'esc-source-select')"/></label>
+          <div class="field-error" id="esc-source-error"></div>
+        </div>
+      </div>
     </div>
   `;
   document.getElementById('esc-modal-footer').innerHTML=`<button class="btn-override" onclick="escalateField('${zone}','${col}')">Escalate</button><button class="btn-confirm" onclick="submitEscalationFix('${zone}','${col}')">Confirm</button>`;
   document.getElementById('escalation-modal').classList.add('open');
 }
-function renderSourceFileOptions(){const manual=`<label class="file-select-item"><input type="radio" name="src-file" value="manual"/><div class="file-select-text"><span class="file-select-name">Manual entry</span><span class="file-select-type">No source document</span></div></label>`;return manual+uploadedFiles.map((f)=>`<label class="file-select-item"><input type="radio" name="src-file" value="${f.id}"/><div class="file-select-text"><span class="file-select-name">${f.name}</span><span class="file-select-type">${f.type}</span></div></label>`).join('')}
-function addSourceFile(input){
-  const file=input.files[0];if(!file)return;
-  const entry={id:'up'+Date.now(),name:file.name,type:'Uploaded just now'};
-  uploadedFiles.unshift(entry);
-  document.getElementById('src-select-panel').innerHTML=renderSourceFileOptions();
+function renderCustomSelectOptions(id){
+  const opts=[{value:'manual',label:'External source'},...uploadedFiles.map(f=>({value:f.id,label:f.name}))];
+  return opts.map(o=>`<button class="cs-option" type="button" data-value="${o.value}" onclick="pickCustomOption('${id}','${o.value}',this.textContent.trim())">${o.label}</button>`).join('');
 }
-function closeEscalationModal(){document.getElementById('escalation-modal').classList.remove('open')}
+function renderCustomSelect(id){
+  return `<div class="cs-wrap" id="${id}-wrap"><div class="cs-trigger" id="${id}-trigger" tabindex="0" role="combobox" onclick="openCustomSelect('${id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCustomSelect('${id}')}"><span id="${id}-label">Select a source</span><svg class="cs-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="cs-dropdown" id="${id}-dropdown" role="listbox">${renderCustomSelectOptions(id)}</div><input type="hidden" id="${id}" value=""/></div>`;
+}
+function closeAllCustomSelects(){
+  document.querySelectorAll('.cs-wrap.open').forEach(w=>{
+    const id=w.id.replace(/-wrap$/,'');
+    const dropdown=document.getElementById(id+'-dropdown');
+    if(dropdown){dropdown.style.display='none';w.appendChild(dropdown);}
+    w.classList.remove('open');
+  });
+}
+function openCustomSelect(id){
+  const wrap=document.getElementById(id+'-wrap');
+  const trigger=document.getElementById(id+'-trigger');
+  const dropdown=document.getElementById(id+'-dropdown');
+  const isOpen=wrap.classList.contains('open');
+  closeAllCustomSelects();
+  if(!isOpen){
+    const r=trigger.getBoundingClientRect();
+    dropdown.style.top=(r.bottom+4)+'px';
+    dropdown.style.left=r.left+'px';
+    dropdown.style.width=r.width+'px';
+    dropdown.style.display='block';
+    document.body.appendChild(dropdown);
+    wrap.classList.add('open');
+  }
+}
+function pickCustomOption(id,value,label){
+  const h=document.getElementById(id);if(h)h.value=value;
+  const l=document.getElementById(id+'-label');if(l){l.textContent=label;l.style.color='var(--text)'}
+  const d=document.getElementById(id+'-dropdown');if(d)d.querySelectorAll('.cs-option').forEach(o=>o.classList.toggle('selected',o.dataset.value===value));
+  closeAllCustomSelects();
+}
+function addSourceFile(input,targetId){
+  const file=input.files[0];if(!file)return;
+  const entry={id:'up'+Date.now(),name:file.name};
+  uploadedFiles.unshift(entry);
+  const tid=targetId||'esc-source-select';
+  const d=document.getElementById(tid+'-dropdown');if(d)d.innerHTML=renderCustomSelectOptions(tid);
+  pickCustomOption(tid,entry.id,entry.name);
+}
+function closeEscalationModal(){closeAllCustomSelects();document.getElementById('escalation-modal').classList.remove('open')}
 function submitEscalationFix(zone,col){
   const valueInput=document.getElementById('esc-value-input');
   const val=valueInput.value.trim();
-  const sourcePicked=!!document.querySelector('input[name="src-file"]:checked');
+  const sourcePicked=!!document.getElementById('esc-source-select').value;
   const valueError=document.getElementById('esc-value-error');
   const sourceError=document.getElementById('esc-source-error');
   valueInput.classList.toggle('invalid',!val);
@@ -506,12 +593,15 @@ function submitEscalationFix(zone,col){
   sourceError.textContent=sourcePicked?'':'Select a source before confirming.';
   sourceError.classList.toggle('show',!sourcePicked);
   if(!val||!sourcePicked)return;
-  const row=findRow(zone);row[col]=val;row.fieldMeta[col].resolution='resolved';
+  const row=findRow(zone);const fm=row.fieldMeta[col];
+  row[col]=val;fm.resolution='resolved';fm.providedBy='Manually entered';
+  fm.source=document.getElementById('esc-source-select-label').textContent;
   closeEscalationModal();refreshViews(zone);
 }
 function escalateField(zone,col){
   closeEscalationModal();
   closeAiModal();
+  closeReviewUpdateModal();
   showToast('Escalated to SME ✓');
 }
 function showToast(msg){
@@ -523,43 +613,143 @@ function showToast(msg){
   window.__toastTimer=setTimeout(()=>t.classList.remove('show'),1800);
 }
 
+let aiOverrideMode=false,aiModalZone=null,aiModalCol=null;
 function openAiSourceModal(zone,col){
-  const row=findRow(zone);const fm=row.fieldMeta[col];
-  document.getElementById('ai-modal-body').innerHTML=`
-    <div class="form-group"><label>Suggested value</label><div class="current-value">${row[col]}</div></div>
-    <div class="form-group"><label>Location</label><div class="field-modal-row">
-      <div><div class="field-modal-id">${fieldLabel(col)} · Zone ${zone}</div></div>
-    </div></div>
-    <div class="form-group"><label>Source</label><div class="source-box"><div class="src-name">${fm.source}</div><div class="src-snippet">${fm.sourceSnippet}</div></div><button type="button" class="btn-tertiary" style="font-size:10px;margin-top:6px;display:inline-block;color:var(--accent)">View Document</button></div>
-    <div class="form-group"><label>AI Reasoning</label><div class="reasoning-box">${fm.reasoning}</div></div>
-    ${fm.resolution?`<div class="status-note" style="background:${fm.resolution==='confirmed'?'#f0fdf4':'#faf5ff'};border:1px solid ${fm.resolution==='confirmed'?'#bbf7d0':'#e9d5ff'};color:${fm.resolution==='confirmed'?'#166534':'#6b21a8'}">${fm.resolution==='confirmed'?'✓ Confirmed by engineer.':'✎ Overridden by engineer'+(fm.overrideNote?': "'+fm.overrideNote+'"':'.')}</div>`:`
-    <div class="override-panel" id="override-panel">
-      <div class="form-group"><label>Corrected value</label><input class="form-input" id="ov-value-input" value="${row[col]}"/><div class="field-error" id="ov-value-error"></div></div>
-      <div class="form-group"><label>Note (optional)</label><textarea class="form-input" id="ov-note-input" placeholder="Why you're overriding the AI's value..."></textarea></div>
-      <button class="btn-submit" onclick="submitOverride('${zone}','${col}')">Save Override</button>
-    </div>`}
-  `;
-  document.getElementById('ai-modal-footer').innerHTML=fm.resolution?'':`<button class="btn-override" onclick="escalateField('${zone}','${col}')">Escalate</button><button class="btn-override" onclick="toggleOverridePanel()">Override</button><button class="btn-confirm" onclick="confirmAiField('${zone}','${col}')">Confirm</button>`;
-  document.getElementById('ai-modal-footer').style.display=fm.resolution?'none':'flex';
+  aiModalZone=zone;aiModalCol=col;aiOverrideMode=false;
+  renderAiModalBody();
   document.getElementById('ai-modal').classList.add('open');
 }
-function closeAiModal(){document.getElementById('ai-modal').classList.remove('open')}
-function toggleOverridePanel(){document.getElementById('override-panel').classList.toggle('open')}
+function renderAiModalBody(){
+  closeAllCustomSelects();
+  const zone=aiModalZone,col=aiModalCol;
+  const row=findRow(zone);const fm=row.fieldMeta[col];
+  document.getElementById('ai-modal-title').textContent=aiOverrideMode?'Override Suggested Value':'Review Suggested Values';
+  document.getElementById('ai-modal-inner').style.maxWidth=aiOverrideMode?'620px':'760px';
+  if(aiOverrideMode){
+    document.getElementById('ai-modal-body').innerHTML=`
+      <p class="modal-intro">Please enter the correct value and select the source file for this override.</p>
+      <div class="modal-grid" style="grid-template-columns:1fr 1fr">
+        <div class="modal-col">
+          <div class="override-col-heading">AI Suggestion</div>
+          <div class="form-group"><label>Suggested value</label><div class="current-value">${row[col]}</div></div>
+          <div class="form-group"><label>Location</label><div class="field-modal-id">${fieldLabel(col)} · Zone ${zone}</div></div>
+          <div class="form-group"><label>AI Reasoning</label><div class="reasoning-box">${fm.reasoning}</div></div>
+        </div>
+        <div class="modal-col">
+          <div class="override-col-heading">Override</div>
+          <div class="form-group"><label>Correct value</label><input class="form-input" id="ov-value-input" placeholder="Enter the correct ${fieldLabel(col).toLowerCase()}"/><div class="field-error" id="ov-value-error"></div></div>
+          <div class="form-group">
+            <label>Source document</label>
+            ${renderCustomSelect('ov-source-select')}
+            <label class="add-file-row btn-tertiary link-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg><span>Upload new file</span><input type="file" onchange="addSourceFile(this,'ov-source-select')"/></label>
+            <div class="field-error" id="ov-source-error"></div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.getElementById('ai-modal-footer').innerHTML=`<button class="btn-override" onclick="toggleOverrideMode()">Back</button><button class="btn-confirm" onclick="submitOverride('${zone}','${col}')">Confirm</button>`;
+    document.getElementById('ai-modal-footer').style.display='flex';
+  } else {
+    document.getElementById('ai-modal-body').innerHTML=`
+      <p class="modal-intro">AI matched this value from a linked source — review the evidence before confirming.</p>
+      <div class="modal-grid">
+        <div class="modal-col">
+          <div class="override-col-heading">AI Suggestion</div>
+          <div class="form-group"><label>Suggested value</label><div class="current-value">${row[col]}</div><div class="value-tag ai">AI Generated</div></div>
+          <div class="form-group"><label>Location</label><div class="field-modal-id">${fieldLabel(col)} · Zone ${zone}</div></div>
+        </div>
+        <div class="modal-col">
+          <div class="override-col-heading">Workflow</div>
+          <div class="ai-check-list">
+            ${fm.workflow.map(w=>`<div class="ai-check-row"><div class="ai-check-icon-col"><span class="ai-check-circle">&#10003;</span></div><div><div class="ai-check-title">${w.title}</div><div class="ai-check-sub">${w.sub}</div></div></div>`).join('')}
+            <div class="ai-check-row"><div class="ai-check-icon-col"><span class="ai-check-circle">&#10003;</span></div><div><div class="ai-check-title">Recommended value</div><div class="ai-check-sub">${row[col]}</div></div></div>
+          </div>
+        </div>
+        <div class="modal-col">
+          <div class="override-col-heading">Evidence</div>
+          <div class="form-group"><label>AI Reasoning</label><div class="reasoning-box">${fm.reasoning}</div></div>
+          <div class="form-group"><label>Source document</label><div class="source-box"><div class="src-name">${fm.source}</div><div class="src-snippet">${fm.sourceSnippet}</div></div><button type="button" class="btn-tertiary link-accent" style="font-size:10px;margin-top:6px;display:inline-block">View Document</button></div>
+          ${fm.resolution?`<div class="status-note" style="background:${fm.resolution==='confirmed'?'#f0fdf4':'#faf5ff'};border:1px solid ${fm.resolution==='confirmed'?'#bbf7d0':'#e9d5ff'};color:${fm.resolution==='confirmed'?'#166534':'#6b21a8'}">${fm.resolution==='confirmed'?'✓ Confirmed by engineer.':'✎ Overridden by engineer.'}</div>`:''}
+        </div>
+      </div>
+    `;
+    document.getElementById('ai-modal-footer').innerHTML=fm.resolution?'':`<button class="btn-override" onclick="escalateField('${zone}','${col}')">Escalate</button><button class="btn-override" onclick="toggleOverrideMode()">Override</button><button class="btn-confirm" onclick="confirmAiModal('${zone}','${col}')">Confirm</button>`;
+    document.getElementById('ai-modal-footer').style.display=fm.resolution?'none':'flex';
+  }
+}
+function closeAiModal(){closeAllCustomSelects();document.getElementById('ai-modal').classList.remove('open')}
+function toggleOverrideMode(){aiOverrideMode=!aiOverrideMode;renderAiModalBody()}
+function confirmAiModal(zone,col){if(aiOverrideMode){submitOverride(zone,col)}else{confirmAiField(zone,col)}}
 function confirmAiField(zone,col){
-  const row=findRow(zone);row.fieldMeta[col].resolution='confirmed';
+  const row=findRow(zone);const fm=row.fieldMeta[col];
+  fm.resolution='confirmed';fm.providedBy='AI Generated';
   closeAiModal();refreshViews(zone);
 }
 function submitOverride(zone,col){
   const valueInput=document.getElementById('ov-value-input');
   const val=valueInput.value.trim();
-  const note=document.getElementById('ov-note-input').value.trim();
+  const sourcePicked=!!document.getElementById('ov-source-select').value;
   const valueError=document.getElementById('ov-value-error');
+  const sourceError=document.getElementById('ov-source-error');
   valueInput.classList.toggle('invalid',!val);
-  valueError.textContent=val?'':'Enter a value before saving.';
+  valueError.textContent=val?'':'Enter a value before confirming.';
   valueError.classList.toggle('show',!val);
-  if(!val)return;
-  const row=findRow(zone);row[col]=val;row.fieldMeta[col].resolution='overridden';row.fieldMeta[col].overrideNote=note;
+  sourceError.textContent=sourcePicked?'':'Select a source before confirming.';
+  sourceError.classList.toggle('show',!sourcePicked);
+  if(!val||!sourcePicked)return;
+  const row=findRow(zone);const fm=row.fieldMeta[col];
+  row[col]=val;fm.resolution='overridden';fm.providedBy='Manually entered';
+  fm.source=document.getElementById('ov-source-select-label').textContent;
   closeAiModal();refreshViews(zone);
+}
+
+function openReviewUpdateModal(zone,col){
+  closeAllCustomSelects();
+  const row=findRow(zone);const fm=row.fieldMeta[col];
+  const providedBy=fm.providedBy||(fm.resolution==='confirmed'?'AI Generated':'Manually entered');
+  document.getElementById('review-modal-body').innerHTML=`
+    <p class="modal-intro">Please enter the updated value and select the supporting source document to update the current value.</p>
+    <div class="modal-grid" style="grid-template-columns:1fr 1fr">
+      <div class="modal-col">
+        <div class="override-col-heading">Current Value</div>
+        <div class="form-group"><label>Suggested value</label><div class="current-value">${row[col]}</div></div>
+        <div class="form-group"><label>Location</label><div class="field-modal-id">${fieldLabel(col)} · Zone ${zone}</div></div>
+        <div class="form-group"><label>Provided by</label><div class="field-modal-id">${providedBy}</div></div>
+        <div class="form-group"><label>Source document</label><div class="field-modal-id">${fm.source||'—'}</div></div>
+      </div>
+      <div class="modal-col">
+        <div class="override-col-heading">New Value</div>
+        <div class="form-group"><label>Correct value</label><input class="form-input" id="rv-value-input" placeholder="Enter the correct ${fieldLabel(col).toLowerCase()}"/><div class="field-error" id="rv-value-error"></div></div>
+        <div class="form-group">
+          <label>Source document</label>
+          ${renderCustomSelect('rv-source-select')}
+          <label class="add-file-row btn-tertiary link-accent"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg><span>Upload new file</span><input type="file" onchange="addSourceFile(this,'rv-source-select')"/></label>
+          <div class="field-error" id="rv-source-error"></div>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById('review-modal-footer').innerHTML=`<button class="btn-override" onclick="escalateField('${zone}','${col}')">Escalate</button><button class="btn-confirm" onclick="submitReviewUpdate('${zone}','${col}')">Confirm</button>`;
+  document.getElementById('review-update-modal').classList.add('open');
+}
+function closeReviewUpdateModal(){closeAllCustomSelects();document.getElementById('review-update-modal').classList.remove('open')}
+function submitReviewUpdate(zone,col){
+  const valueInput=document.getElementById('rv-value-input');
+  const val=valueInput.value.trim();
+  const sourcePicked=!!document.getElementById('rv-source-select').value;
+  const valueError=document.getElementById('rv-value-error');
+  const sourceError=document.getElementById('rv-source-error');
+  valueInput.classList.toggle('invalid',!val);
+  valueError.textContent=val?'':'Enter a value before confirming.';
+  valueError.classList.toggle('show',!val);
+  sourceError.textContent=sourcePicked?'':'Select a source before confirming.';
+  sourceError.classList.toggle('show',!sourcePicked);
+  if(!val||!sourcePicked)return;
+  const row=findRow(zone);const fm=row.fieldMeta[col];
+  row[col]=val;
+  fm.source=document.getElementById('rv-source-select-label').textContent;
+  fm.providedBy='Manually entered';
+  closeReviewUpdateModal();refreshViews(zone);
 }
 
 function refreshViews(zone){
@@ -591,29 +781,35 @@ function renderReviewSummary(){
     const isMissing=fm.state==='missing';
     const statusCls=done?'done':(isMissing?'missing':'ai');
     const statusLabel=done?'Reviewed':(isMissing?'Missing':'AI Generated');
-    return `<button type="button" class="review-pill ${statusCls}" data-zone="${row.zone}" onclick="reviewChecklistClick('${row.zone}')">${fieldLabel(col)} (${row.zone}) — ${statusLabel}</button>`;
+    return `<button type="button" class="review-pill ${statusCls}" data-zone="${row.zone}" onclick="reviewChecklistClick('${row.zone}','${col}')">${fieldLabel(col)} (${row.zone}) — ${statusLabel}</button>`;
   }).join('');
-  return `<div class="review-summary"><div class="review-summary-header"><h4>Review Checklist</h4><p>Review the AI-generated suggestions and missing fields below before submitting the validation report.</p></div><div class="review-checklist">${rows}</div><div class="review-warning" id="review-warning-banner">Please review all pending validation items before submitting the report.</div></div>`;
+  return `<div class="review-summary"><div class="review-summary-header"><h4>Review Checklist</h4><p>Review the AI-generated suggestions and missing fields below before submitting the validation report.</p></div><div class="review-checklist">${rows}</div></div>`;
 }
 
-function reviewChecklistClick(zone){
-  const row=document.querySelector(`#tbl-post tr[data-zone="${zone}"]`);
-  if(row)row.scrollIntoView({behavior:'smooth',block:'center'});
+function reviewChecklistClick(zone,col){
+  const tr=document.querySelector(`#tbl-post tr[data-zone="${zone}"]`);
+  if(tr)tr.scrollIntoView({behavior:'smooth',block:'center'});
   highlightZone(zone);
+  if(col)setTimeout(()=>openFieldModal(zone,col),300);
 }
 
 function handleSubmit(){
   const items=allReviewItems();
-  const allDone=items.every(i=>!!i.fm.resolution);
-  if(!allDone){
-    const banner=document.getElementById('review-warning-banner');
-    if(banner){banner.classList.remove('show');void banner.offsetWidth;banner.classList.add('show')}
-    document.querySelectorAll('.review-pill:not(.done)').forEach(el=>{el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash')});
-    const firstPending=document.querySelector('.review-pill:not(.done)');
-    if(firstPending)firstPending.scrollIntoView({behavior:'smooth',block:'center'});
-    return;
-  }
+  const pending=items.filter(i=>!i.fm.resolution);
+  if(pending.length){openPendingModal(pending);return;}
   openSubmitConfirm();
+}
+function openPendingModal(pending){
+  const list=pending.map(i=>`<li style="font-size:12px;color:var(--text-mid);margin:4px 0">${fieldLabel(i.col)} (${i.row.zone}) — ${i.fm.state==='missing'?'Missing':'AI Generated'}</li>`).join('');
+  document.getElementById('pending-review-body').innerHTML=`<p class="modal-intro">Please review all pending items below before submitting the report.</p><ul style="padding-left:18px;margin:0">${list}</ul>`;
+  document.getElementById('pending-review-modal').classList.add('open');
+}
+function closePendingModal(){document.getElementById('pending-review-modal').classList.remove('open')}
+function reviewFirstPending(){
+  closePendingModal();
+  const items=allReviewItems();
+  const first=items.find(i=>!i.fm.resolution);
+  if(first)setTimeout(()=>openFieldModal(first.row.zone,first.col),200);
 }
 
 let partSubmitted=false;
@@ -629,8 +825,12 @@ function confirmSubmit(){
 
 function toggleDropdown(e,id){e.stopPropagation();const dd=document.getElementById(id);const isOpen=dd.classList.contains('open');document.querySelectorAll('.card-dropdown.open').forEach(d=>d.classList.remove('open'));if(!isOpen)dd.classList.add('open')}
 function cardAction(action,partId){document.querySelectorAll('.card-dropdown.open').forEach(d=>d.classList.remove('open'));if(action==='delete'){if(confirm('Delete this part?')){const idx=parts.findIndex(p=>p.id===partId);if(idx>-1){parts.splice(idx,1);renderGrid()}}return}if(action==='upload'){openUploadModal();return}openDetail(partId)}
-document.addEventListener('click',()=>{document.querySelectorAll('.card-dropdown.open').forEach(d=>d.classList.remove('open'))});
+document.addEventListener('click',e=>{
+  document.querySelectorAll('.card-dropdown.open').forEach(d=>d.classList.remove('open'));
+  if(!e.target.closest('.cs-wrap')&&!e.target.closest('.cs-dropdown'))closeAllCustomSelects();
+});
 document.addEventListener('click',(e)=>{if(e.target.closest('#tbl-post')||e.target.closest('.review-pill'))return;document.querySelectorAll('tr.linked-active').forEach(r=>r.classList.remove('linked-active'))});
+document.addEventListener('change',e=>{if(e.target.matches('select.form-input'))e.target.classList.toggle('has-value',!!e.target.value)});
 
 let diagScale=1,diagPanX=0,diagPanY=0;
 function applyDiagramTransform(){const inner=document.getElementById('diagram-inner');if(inner)inner.style.transform=`translate(${diagPanX}px,${diagPanY}px) scale(${diagScale})`}
